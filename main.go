@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"context"
 	"embed"
 	"encoding/json"
 	"fmt"
@@ -148,23 +149,10 @@ func postPost(c *fiber.Ctx) error {
 		return c.Status(http.StatusInternalServerError).SendString(err.Error())
 	}
 
-	contentJson, err := json.Marshal(struct {
-		Content string `json:"content"`
-	}{
-		Content: `## 新しいポストリクエストが作成されました
+	err = sendDiscordWebhook(`## 新しいポストリクエストが作成されました
 
 ポストリクエストを承認してください。
-http://localhost:9000/reviews/` + pr.ID.String(),
-	})
-	if err != nil {
-		return c.Status(http.StatusInternalServerError).SendString(err.Error())
-	}
-
-	_, err = http.Post(
-		webhookURL,
-		"application/json",
-		bytes.NewBuffer(contentJson),
-	)
+http://localhost:9000/reviews/` + pr.ID.String())
 	if err != nil {
 		return c.Status(http.StatusInternalServerError).SendString(err.Error())
 	}
@@ -205,28 +193,12 @@ func postReview(c *fiber.Ctx) error {
 	}
 
 	if dev {
-		contentJson, err := json.Marshal(struct {
-			Content string `json:"content"`
-		}{
-			Content: "## ポスト送信テスト\n\n```\n" + pr.Content + "\n```",
-		})
-		if err != nil {
-			return c.Status(http.StatusInternalServerError).SendString(err.Error())
-		}
-
-		_, err = http.Post(
-			webhookURL,
-			"application/json",
-			bytes.NewBuffer(contentJson),
-		)
+		err = sendDiscordWebhook("## ポスト送信テスト\n\n```\n" + pr.Content + "\n```")
 		if err != nil {
 			return c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
 	} else {
-		client := gotwtr.New(xKey)
-		_, err := client.PostTweet(c.Context(), &gotwtr.PostTweetOption{
-			Text: pr.Content,
-		})
+		err = sendPost(c.Context(), pr.Content)
 		if err != nil {
 			return c.Status(http.StatusInternalServerError).SendString(err.Error())
 		}
@@ -241,4 +213,38 @@ func postReview(c *fiber.Ctx) error {
 		"ID":      pr.ID,
 		"Content": pr.Content,
 	}, "layout")
+}
+
+func sendDiscordWebhook(content string) error {
+	contentJson, err := json.Marshal(struct {
+		Content string `json:"content"`
+	}{
+		Content: content,
+	})
+	if err != nil {
+		return err
+	}
+
+	_, err = http.Post(
+		webhookURL,
+		"application/json",
+		bytes.NewBuffer(contentJson),
+	)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func sendPost(ctx context.Context, content string) error {
+	client := gotwtr.New(xKey)
+	_, err := client.PostTweet(ctx, &gotwtr.PostTweetOption{
+		Text: content,
+	})
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
