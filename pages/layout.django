@@ -1,0 +1,112 @@
+<style>
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 45%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --chart-1: 173 58% 39%;
+    --chart-2: 12 76% 61%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+</style>
+<style>
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Inter", sans-serif;
+    --font-sans-serif: "Inter";
+  }
+</style>
+<style>
+  body {
+    font-family: "Inter", sans-serif;
+    --font-sans-serif: "Inter";
+  }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<header class="bg-black text-white py-4 px-6">
+  <div class="container mx-auto flex items-center justify-between">
+    <a href="/">
+      <div class="flex items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 345.32 412.63"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-6 w-6 mr-2 text-white">
+          <defs>
+            <style>
+              .cls-1 {
+                fill: #22c716;
+              }
+              .cls-1,
+              .cls-2,
+              .cls-3,
+              .cls-4,
+              .cls-5 {
+                stroke-width: 0px;
+              }
+              .cls-2 {
+                fill: #91f2e2;
+              }
+              .cls-3 {
+                fill: #065;
+              }
+              .cls-4 {
+                fill: #29ccb1;
+              }
+              .cls-5 {
+                fill: #fff;
+              }
+            </style>
+          </defs>
+          <path
+            d="M130.05,67.37v-9.74c0-5.84-2.91-11.3-7.78-14.62L64.89,3.8c-2.12-1.45-4.45-2.62-6.94-3.22-7.16-1.72-17.57-.48-17.57,16.3v50.86c1.84-.23,3.71-.38,5.62-.38h84.05Z"
+            class="cls-1" />
+          <path
+            d="M.02,333.92c0,17.61,8.66,34.1,23.15,44.1l36.11,24.91c8.94,6.17,19.55,9.71,30.42,9.71h100.35L0,281.37l.02,52.55Z"
+            class="cls-3" />
+          <path
+            d="M336.94,352.21l-22-15.15c-1.01.98-2.21,1.68-3.55,2.17l-25.72,25.72c-5.36,5.36-14.04,5.36-19.4,0s-5.36-14.04,0-19.4l24.87-24.87L1.88,121.71l-1.88-1.36.02,161.02,190.04,131.03v.23h69.29c12.45,0,24.39-5.2,33.17-14.04"
+            class="cls-4" />
+          <path
+            d="M291.15,320.89l.31-.31v-55.06c0-7.16,5.8-12.96,12.96-12.96h.98c7.16,0,12.96,5.8,12.96,12.96v61.46c0,5.07-1.32,8.26-3.42,10.3l22,15.15c2.76-3.91,8.37-13.83,8.37-26.14v-.59s-.05-103.86-.05-103.86c0-15.45-7.6-29.91-20.32-38.69l-155.67-107.49c-7.81-5.39-17.07-8.28-26.55-8.28H46c-1.91,0-3.78.15-5.62.38C17.64,70.53.02,89.95.02,113.52l-.02,6.93"
+            class="cls-2" />
+          <path
+            d="M314.95,337.27c2.1-2.03,3.41-5.23,3.42-10.3v-61.46c0-7.16-5.8-12.96-12.96-12.96h-.98c-7.16,0-12.96,5.8-12.96,12.96v55.06l-.31.31-24.87,24.87c-5.36,5.36-5.36,14.04,0,19.4s15.01,5.93,20.37.58"
+            class="cls-5" />
+        </svg>
+        <span class="text-lg font-semibold">Kakko</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+{{ embed }}
