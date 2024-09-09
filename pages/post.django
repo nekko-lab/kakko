@@ -1,0 +1,24 @@
+<div class="flex justify-center my-8 mx-5 md:mx-20">
+  <div class="w-full max-w-[600px] bg-background rounded-lg shadow-lg">
+    <div class="p-4 border-b border-muted">
+      <div class="flex items-start space-x-3">
+        <div class="flex-1">
+          <form action="/" method="POST" class="mb-0">
+            <textarea
+              name="content"
+              placeholder="ポストしたい内容を入力"
+              class="w-full resize-none border-none focus:ring-0 text-foreground bg-transparent font-sans min-h-[96px]"
+              rows="2"></textarea>
+            <div class="flex justify-end mt-2">
+              <button
+                type="submit"
+                class="inline-flex items-center justify-center rounded-md bg-black px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-black/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2">
+                ポストをリクエストする
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
