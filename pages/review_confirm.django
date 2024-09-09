@@ -1,0 +1,21 @@
+<div
+  class="flex flex-col items-center gap-4 text-center p-6 sm:p-8 max-w-[600px] mx-auto">
+  <div class="px-3 py-1 rounded-lg text-sm font-medium">
+    以下のポストが送信されました
+  </div>
+  <div class="px-3 py-1 rounded-lg text-sm font-medium">ID: {{ ID }}</div>
+  <div
+    class="rounded-lg shadow-lg border bg-card text-card-foreground w-full"
+    data-v0-t="card">
+    <div class="p-6 gap-4 text-left break-words">
+      {% autoescape off %}
+      <div>{{ Content | escape | linebreaksbr }}</div>
+      {% endautoescape %}
+    </div>
+  </div>
+  <a
+    href="/"
+    class="inline-flex h-9 items-center justify-center rounded-md bg-black text-white px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50">
+    ホーム画面に戻る
+  </a>
+</div>
