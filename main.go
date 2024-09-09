@@ -75,7 +75,7 @@ func (pr *PostRequest) TableName() string {
 	return "post_requests"
 }
 
-func getenv(key, fallback string) string {
+func getEnvOrDefault(key, fallback string) string {
 	value := os.Getenv(key)
 	if len(value) == 0 {
 		return fallback
@@ -88,24 +88,25 @@ func getenv(key, fallback string) string {
 var pages embed.FS
 
 var (
-	confirmPassword = getenv("CONFIRM_PASSWORD", "password")
-	webhookURL      = getenv("WEBHOOK_URL", "")
-	xKey            = getenv("X_KEY", "")
-	dev             = getenv("DEV", "true") == "true"
+	confirmPassword = getEnvOrDefault("CONFIRM_PASSWORD", "password")
+	webhookURL      = getEnvOrDefault("WEBHOOK_URL", "")
+	xKey            = getEnvOrDefault("X_KEY", "")
+	dev             = getEnvOrDefault("DEV", "true") == "true"
+	listenAddr      = getEnvOrDefault("LISTEN_ADDR", ":9000")
 )
 
 func main() {
-	port, err := strconv.Atoi(getenv("DB_PORT", "3306"))
+	port, err := strconv.Atoi(getEnvOrDefault("DB_PORT", "3306"))
 	if err != nil {
 		log.Panic(err)
 	}
 
 	c := &DBConfig{
-		Username: getenv("DB_USERNAME", "root"),
-		Password: getenv("DB_PASSWORD", "password"),
-		Host:     getenv("DB_HOST", "localhost"),
+		Username: getEnvOrDefault("DB_USERNAME", "root"),
+		Password: getEnvOrDefault("DB_PASSWORD", "password"),
+		Host:     getEnvOrDefault("DB_HOST", "localhost"),
 		Port:     port,
-		Database: getenv("DB_DATABASE", "kakko"),
+		Database: getEnvOrDefault("DB_DATABASE", "kakko"),
 	}
 	err = InitDB(c)
 	if err != nil {
@@ -123,7 +124,7 @@ func main() {
 	app.Get("/reviews/:id", getReview)
 	app.Post("/reviews/:id", postReview)
 
-	log.Panic(app.Listen(":9000"))
+	log.Panic(app.Listen(listenAddr))
 }
 
 func getPost(c *fiber.Ctx) error {
