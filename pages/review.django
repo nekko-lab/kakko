@@ -1,0 +1,30 @@
+<div
+  class="flex flex-col items-center gap-4 text-center p-6 sm:p-8 max-w-[600px] mx-auto">
+  <div class="px-3 py-1 rounded-lg text-sm font-medium">
+    このポストリクエストを承認しますか？
+  </div>
+  <div class="px-3 py-1 rounded-lg text-sm font-medium">ID: {{ ID }}</div>
+  <div
+    class="rounded-lg shadow-lg border bg-card text-card-foreground w-full"
+    data-v0-t="card">
+    <div class="p-6 gap-4 text-left break-words">
+      {% autoescape off %}
+      <div>{{ Content | escape | linebreaksbr }}</div>
+      {% endautoescape %}
+    </div>
+  </div>
+  <form action="/reviews/{{ ID }}" method="POST" class="mb-0">
+    <input
+      class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      name="password"
+      placeholder="パスワードを入力"
+      type="password" />
+    <div class="flex justify-center mt-2">
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600/90 focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2">
+        ポストリクエストを承認
+      </button>
+    </div>
+  </form>
+</div>
